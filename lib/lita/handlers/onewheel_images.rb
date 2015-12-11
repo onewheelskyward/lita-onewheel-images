@@ -1,5 +1,6 @@
 require 'httparty'
 require 'json'
+require 'uri'
 
 module Lita
   module Handlers
@@ -18,7 +19,7 @@ module Lita
 
       def get_results(query)
         puts "Searching for #{query}"
-        response = HTTParty.get "https://www.googleapis.com/customsearch/v1?q=#{query}&cx=#{config.custom_search_engine_id}&num=10&searchType=image&key=#{config.google_api_key}"
+        response = HTTParty.get "https://www.googleapis.com/customsearch/v1?q=#{URI.encode query}&cx=#{config.custom_search_engine_id}&num=10&searchType=image&key=#{config.google_api_key}"
         JSON.parse response.body
       end
 
