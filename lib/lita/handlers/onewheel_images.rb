@@ -1,6 +1,6 @@
 require 'httparty'
 require 'json'
-require 'uri'
+require 'addressable/uri'
 
 module Lita
   module Handlers
@@ -8,7 +8,7 @@ module Lita
       config :custom_search_engine_id
       config :google_api_key
 
-      route /image\s+(.*)$/, :image, command: true
+      route /^image\s+(.*)$/, :image, command: true
 
       def image(response)
         query = response.matches[0][0]
@@ -19,7 +19,15 @@ module Lita
 
       def get_results(query)
         puts "Searching for #{query}"
-        response = HTTParty.get "https://www.googleapis.com/customsearch/v1?q=#{URI.encode query}&cx=#{config.custom_search_engine_id}&num=10&searchType=image&key=#{config.google_api_key}"
+        uri = Addressable::URI.new
+        uri.query_values = {
+            q: query,
+            cx: config.custom_search_engine_id,
+            searchType: 'image',
+            num: 10,
+            key: config.google_api_key}
+        Lita.logger.debug uri.query
+        response = HTTParty.get "https://www.googleapis.com/customsearch/v1?#{uri.query}"
         JSON.parse response.body
       end
 
