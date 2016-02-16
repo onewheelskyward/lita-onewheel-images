@@ -17,7 +17,11 @@ gem "lita-onewheel-images"
 Configuration
 -------------
 
-TODO: Describe any configuration attributes the plugin exposes.
+Lita.configure do |config|
+  config.handlers.onewheel_images.custom_search_engine_id = '016450909327860943906:3a3e35xbkzu'
+  config.handlers.onewheel_images.google_api_key = 'AIzaSyAlTbxqcZOlb3M-QXR4PCYpS2U1rfgwSlU'
+  config.handlers.onewheel_images.safe_search = 'medium'  # This is the default setting.  Use 'off' at your own risk.
+end
 
 Usage
 -----

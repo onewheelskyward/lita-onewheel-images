@@ -7,6 +7,7 @@ module Lita
     class OnewheelImages < Handler
       config :custom_search_engine_id
       config :google_api_key
+      config :safe_search, required: false, default: 'medium'
 
       route /^image\s+(.*)$/, :image, command: true
 
@@ -25,7 +26,8 @@ module Lita
             cx: config.custom_search_engine_id,
             searchType: 'image',
             num: 10,
-            key: config.google_api_key}
+            key: config.google_api_key,
+            safe: config.safe_search}
         Lita.logger.debug uri.query
         response = HTTParty.get "https://www.googleapis.com/customsearch/v1?#{uri.query}"
         JSON.parse response.body
