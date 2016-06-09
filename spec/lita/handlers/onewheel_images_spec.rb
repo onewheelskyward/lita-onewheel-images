@@ -1,10 +1,11 @@
 require 'spec_helper'
+require 'onewheel-google'
 
 describe Lita::Handlers::OnewheelImages, lita_handler: true do
 
   before(:each) do
     mock_result_json = File.open('spec/fixtures/mock_result.json').read
-    allow(Lita::Handlers::OnewheelImages).to receive(:get_results).and_return(mock_result_json)
+    allow(OnewheelGoogle).to receive(:search).and_return(JSON.parse mock_result_json)
 
     registry.configure do |config|
       config.handlers.onewheel_images.custom_search_engine_id = ''
@@ -15,10 +16,7 @@ describe Lita::Handlers::OnewheelImages, lita_handler: true do
   it { is_expected.to route_command('image something') }
 
   it 'does neat imagey things' do
-    mock_result_json = JSON.parse File.open('spec/fixtures/mock_result.json').read
-    allow(Lita::Handlers::OnewheelImages).to receive(:get_results).and_return(mock_result_json)
-    # mock gcse response
     send_command 'image yo'
-
+    expect(replies.last).to eq('https://s-media-cache-ak0.pinimg.com/736x/4a/43/a4/4a43a4b6569cf8a197b6c9217de3f412.jpg')
   end
 end
