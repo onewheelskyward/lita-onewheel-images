@@ -23,6 +23,10 @@ module Lita
         if result
           result['items'].each do |r|
             if r['mime'] == 'image/gif'
+              if r['link'][/200_s.gif$/]
+                r['link'].gsub! /200_s.gif/, 'giphy.gif'
+              end
+
               response.reply r['link']
               break
             end

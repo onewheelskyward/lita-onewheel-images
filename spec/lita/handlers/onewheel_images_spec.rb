@@ -30,4 +30,10 @@ describe Lita::Handlers::OnewheelImages, lita_handler: true do
     send_command 'giphy boop'
     expect(replies.last).to eq('https://media.giphy.com/media/lcvjDNIJ8CS88/giphy.gif')
   end
+
+  it 'does neat gif-y things' do
+    mock_it_up('giphy_tophat_result')
+    send_command 'giphy tophat'
+    expect(replies.last).to eq('https://media4.giphy.com/media/7fLGzTYkX3hO8/giphy.gif')
+  end
 end
