@@ -6,6 +6,7 @@ module Lita
       config :custom_search_engine_id
       config :google_api_key
       config :safe_search, required: false, default: 'medium'
+      config :giphy_enabled, required: false, default: true
 
       route /^image\s+(.*)$/, :image, command: true
       route /^giphy\s+(.*)$/, :giphy, command: true
@@ -17,6 +18,10 @@ module Lita
       end
 
       def giphy(response)
+        unless config.giphy_enabled
+          return
+        end
+
         query = 'giphy ' + response.matches[0][0]
         result = ::OnewheelGoogle::search(query, config.custom_search_engine_id, config.google_api_key, config.safe_search, image = true)
 
