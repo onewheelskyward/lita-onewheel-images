@@ -8,12 +8,15 @@ module Lita
       config :safe_search, required: false, default: 'medium'
       config :giphy_enabled, required: false, default: true
 
-      route /^image\s+(.*)$/, :image, command: true
-      route /^giphy\s+(.*)$/, :giphy, command: true
+      route /^image\s+(.*)$/i, :image, command: true
+      route /^img\s+(.*)$/i, :image, command: true
+      route /^giphy\s+(.*)$/i, :giphy, command: true
+      route /^gif\s+(.*)$/i, :giphy, command: true
 
       def image(response)
         query = response.matches[0][0]
         result = ::OnewheelGoogle::search(query, config.custom_search_engine_id, config.google_api_key, config.safe_search, image = true)
+        Lita.logger.debug "response: #{result['items'][0]['link']}"
         response.reply result['items'][0]['link']
       end
 
@@ -32,6 +35,7 @@ module Lita
                 r['link'].gsub! /200_s.gif/, 'giphy.gif'
               end
 
+              Lita.logger.debug "response: #{r['link']}"
               response.reply r['link']
               break
             end
