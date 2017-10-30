@@ -39,7 +39,7 @@ module Lita
 
               Lita.logger.debug "response: #{r['link']}"
               message = {text: r['link'],
-                         attachments: URI::encode [{attachment_type: 'default', text: 'Choose a game to play'}].to_json
+                         attachments: URI::encode([{attachment_type: 'default', text: 'Choose a game to play'}].to_json)
                         }
               #]}
               response.reply(message)
