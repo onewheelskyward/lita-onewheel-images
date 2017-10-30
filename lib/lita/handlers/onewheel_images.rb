@@ -1,4 +1,6 @@
 require 'onewheel-google'
+require 'open-uri'
+require 'json'
 
 module Lita
   module Handlers
@@ -37,10 +39,7 @@ module Lita
 
               Lita.logger.debug "response: #{r['link']}"
               message = {text: r['link'],
-                         attachments: [{
-                           attachment_type: 'default',
-                           text: 'Choose a game to play',
-                           }]
+                         attachments: URI::encode [{attachment_type: 'default', text: 'Choose a game to play'}].to_json
                         }
               #]}
               response.reply(message)
