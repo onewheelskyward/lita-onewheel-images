@@ -39,13 +39,15 @@ module Lita
 
               Lita.logger.debug "response: #{r['link']}"
               attachments = [{
+                               text: "Choose wisely",
                                callback_id: 'wopr_game',
                                attachment_type: 'default',
+                               fallback: "You are unable to choose a gif",
                                actions: [
-                              {text: 'This one', type: 'button'},
-                              {text: 'Try Again', type: 'button'},
-                              {text: 'I\'m feeling lucky.', type: 'button'}]
-                             }]
+                                {text: 'This one', type: 'button'},
+                                {text: 'Try Again', type: 'button'},
+                                {text: 'I\'m feeling lucky.', type: 'button'}]
+                               }]
               message = {text: r['link'],
                          attachments: MultiJson.dump(attachments.map(&:to_hash))
                         }
