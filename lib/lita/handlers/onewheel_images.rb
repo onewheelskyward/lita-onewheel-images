@@ -17,7 +17,7 @@ module Lita
         query = response.matches[0][0]
         result = ::OnewheelGoogle::search(query, config.custom_search_engine_id, config.google_api_key, config.safe_search, image = true)
         Lita.logger.debug "response: #{result['items'][0]['link']}"
-        response.reply result['items'][0]['link']
+        response.reply({text: result['items'][0]['link']})
       end
 
       def giphy(response)
@@ -36,7 +36,7 @@ module Lita
               end
 
               Lita.logger.debug "response: #{r['link']}"
-              response.reply r['link']
+              response.reply({text: r['link']})
               break
             end
           end
