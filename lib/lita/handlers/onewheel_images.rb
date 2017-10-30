@@ -38,8 +38,13 @@ module Lita
               end
 
               Lita.logger.debug "response: #{r['link']}"
+              attachments = [
+                {text: 'This one', type: 'button'},
+                {text: 'Try Again', type: 'button'},
+                {text: 'I\'m feeling lucky.', type: 'button'}
+              ]
               message = {text: r['link'],
-                         attachments: MultiJson.dump([{text: 'Choose a game to play'}].map(&:to_hash))
+                         attachments: MultiJson.dump(attachments.map(&:to_hash))
                         }
               #]}
               response.reply(message)
