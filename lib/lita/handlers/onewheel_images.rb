@@ -44,9 +44,15 @@ module Lita
                                attachment_type: 'default',
                                fallback: "You are unable to choose a gif",
                                actions: [
-                                {text: 'This one', type: 'button'},
-                                {text: 'Try Again', type: 'button'},
-                                {text: 'I\'m feeling lucky.', type: 'button'}]
+                                {name: 'this_one',
+                                 text: 'This one',
+                                 type: 'button'},
+                                {name: 'try_again',
+                                 text: 'Try Again',
+                                 type: 'button'},
+                                {name: 'feel_lucky',
+                                 text: 'I\'m feeling lucky.',
+                                 type: 'button'}]
                                }]
               message = {text: r['link'],
                          attachments: MultiJson.dump(attachments.map(&:to_hash))
