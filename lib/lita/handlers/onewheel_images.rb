@@ -39,7 +39,7 @@ module Lita
 
               Lita.logger.debug "response: #{r['link']}"
               message = {text: r['link'],
-                         attachments: URI::encode([{text: 'Choose a game to play'}].to_json)
+                         attachments: MultiJson.dump([{text: 'Choose a game to play'}].map(&:to_hash))
                         }
               #]}
               response.reply(message)
