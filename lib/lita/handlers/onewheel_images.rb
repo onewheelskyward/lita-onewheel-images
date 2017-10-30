@@ -50,7 +50,7 @@ module Lita
                                  type: "button",
                                  value: "chess"
                                }
-                           ]}]
+                           ]}]}
               response.reply(message)
               break
             end
