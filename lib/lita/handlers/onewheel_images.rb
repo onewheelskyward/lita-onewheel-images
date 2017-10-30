@@ -36,7 +36,22 @@ module Lita
               end
 
               Lita.logger.debug "response: #{r['link']}"
-              response.reply({text: r['link']})
+              message = {text: r['link'],
+                         attachments: [{
+                             text: "Choose a game to play",
+                             fallback: "You are unable to choose a game",
+                             callback_id: "wopr_game",
+                             color: "#3AA3E3",
+                             attachment_type: "default",
+                             actions: [
+                               {
+                                 name: "game",
+                                 text: "Chess",
+                                 type: "button",
+                                 value: "chess"
+                               }
+                           ]}]
+              response.reply(message)
               break
             end
           end
