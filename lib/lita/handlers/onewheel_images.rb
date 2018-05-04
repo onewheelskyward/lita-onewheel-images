@@ -19,6 +19,7 @@ module Lita
         unless config.search_prefix.empty?
           query = "#{config.search_prefix} #{query}"
         end
+        Lita.logger.debug "query: #{query}"
 
         result = ::OnewheelGoogle::search(query, config.custom_search_engine_id, config.google_api_key, config.safe_search, image = true)
         Lita.logger.debug "response: #{result['items'][0]['link']}"
