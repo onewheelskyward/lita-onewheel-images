@@ -16,7 +16,9 @@ module Lita
 
       def image(response)
         query = response.matches[0][0]
+        Lita.logger.debug("Config search prefix: #{config.search_prefix.empty?}")
         unless config.search_prefix.empty?
+          Lita.logger.debug('Adding config prefix.')
           query = "#{config.search_prefix} #{query}"
         end
         Lita.logger.debug "query: #{query}"
