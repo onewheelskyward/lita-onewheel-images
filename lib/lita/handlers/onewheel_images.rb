@@ -12,7 +12,7 @@ module Lita
       route /^image\s+(.*)$/i, :image, command: true
       route /^img\s+(.*)$/i, :image, command: true
       route /^giphy\s+(.*)$/i, :giphy, command: true
-      route /^gif\s+(.*)$/i, :giphy, command: true
+      route /^gi(f|t)\s+(.*)$/i, :giphy, command: true
 
       def image(response)
         query = response.matches[0][0]

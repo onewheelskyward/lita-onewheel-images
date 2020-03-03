@@ -17,6 +17,8 @@ describe Lita::Handlers::OnewheelImages, lita_handler: true do
 
   it { is_expected.to route_command('image something') }
   it { is_expected.to route_command('giphy something') }
+  it { is_expected.to route_command('gif something') }
+  it { is_expected.to route_command('git something') }
 
   it 'does neat imagey things' do
     mock_it_up('mock_result')
