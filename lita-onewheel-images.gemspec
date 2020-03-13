@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'lita-onewheel-images'
-  spec.version       = '0.6.1'
+  spec.version       = '0.6.2'
   spec.authors       = ['Andrew Kreps']
   spec.email         = ['andrew.kreps@gmail.com']
   spec.description   = 'An implementation of Google Custom Search Engine for image searches in chat.'
