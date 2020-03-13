@@ -39,7 +39,7 @@ module Lita
         result = ::OnewheelGoogle::search(query, config.custom_search_engine_id, config.google_api_key, config.safe_search, image = true)
 
         if result
-          Lita.logger.debug("items: #{result['items']}")
+          # Lita.logger.debug("items: #{result['items']}")
           result['items'].each do |r|
             if r['mime'] == 'image/gif'
               if r['link'][/200_s.gif$/]
