@@ -11,6 +11,8 @@ module Lita
 
       route /^image\s+(.*)$/i, :image, command: true
       route /^img\s+(.*)$/i, :image, command: true
+      route /^jpg\s+(.*)$/i, :image, command: true
+      route /^png\s+(.*)$/i, :image, command: true
       route /^giphy\s+(.*)$/i, :giphy, command: true
       route /^gif\s+(.*)$/i, :giphy, command: true
       route /^git\s+(.*)$/i, :giphy, command: true
